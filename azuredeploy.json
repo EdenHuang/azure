@@ -98,7 +98,8 @@
             "name": "[parameters('newStorageAccountName')]",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('location')]",
-            "image": "[parameters('image')]",
+           
+           
             "properties": {
                 "accountType": "[variables('storageAccountType')]"
             }
@@ -108,7 +109,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('networkSettings').virtualNetworkName]",
             "location": "[parameters('location')]",
-            "image": "[parameters('image')]",
+        
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -130,7 +131,7 @@
             "apiVersion": "2015-05-01-preview",
             "name": "[variables('publicIPAddressName')]",
             "location": "[parameters('location')]",
-            "image": "[parameters('image')]",
+         
             "properties": {
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
                 "dnsSettings": {
@@ -143,7 +144,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
             "location": "[parameters('location')]",
-            "image": "[parameters('image')]",
+          
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
                 "[concat('Microsoft.Network/virtualNetworks/', variables('networkSettings').virtualNetworkName)]"
@@ -171,7 +172,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[variables('masterVMName')]",
             "location": "[parameters('location')]",
-            "image": "[parameters('image')]",
+          
             "dependsOn": [
                 "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
                 "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
@@ -214,7 +215,7 @@
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "name": "[concat(variables('masterVMName'), '/Installation')]",
-            "location": "[parameters('location')]","image": "[parameters('image')]",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('masterVMName'))]"
             ],
@@ -234,7 +235,7 @@
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[concat(variables('nicName'), 'worker', copyindex())]",
-            "location": "[parameters('location')]","image": "[parameters('image')]",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/virtualNetworks/', variables('networkSettings').virtualNetworkName)]"
             ],
@@ -261,7 +262,7 @@
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[concat(variables('workerVMName'), copyindex())]",
-            "location": "[parameters('location')]","image": "[parameters('image')]",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
                 "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'), 'worker', copyindex())]"
