@@ -53,12 +53,7 @@
                 "description": "This is the location where the availability set will be deployed"
             }
         }
-        "image": {
-            "type": "string",
-            "metadata": {
-                "description": "This is the location where the availability set will be deployed"
-            }
-        
+      
     },
     "variables": {
         "imagePublisher": "Canonical",
