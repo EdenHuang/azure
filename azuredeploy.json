@@ -49,7 +49,6 @@
         },
         "location": {
             "type": "string",
-            "defaultValue": "West US",
             "metadata": {
                 "description": "This is the location where the availability set will be deployed"
             }
